@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
@@ -13,4 +14,10 @@ public class GameController : MonoBehaviour
             return GameController._instance;
         }
     }
+
+    public Chunk ChunkPrefab;
+
+    [Tooltip("Vitesse global du jeu")]
+    [Range(-1, 1)]
+    public float speedFactor = 1;
 }
