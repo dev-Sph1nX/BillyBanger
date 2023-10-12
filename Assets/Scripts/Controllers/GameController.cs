@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,4 +21,23 @@ public class GameController : MonoBehaviour
     [Tooltip("Vitesse global du jeu")]
     [Range(-1, 1)]
     public float speedFactor = 1;
+
+    [Tooltip("Temps de jeu (en s)")]
+    [Range(0, 60)]
+    public float globalGameTime = 60;
+
+    private bool _gameEnded = false;
+    void Start()
+    {
+        ChunkController.Instance.StartChunkSpawning();
+    }
+
+    void Update()
+    {
+        if (Time.timeSinceLevelLoad >= globalGameTime && !_gameEnded)
+        {
+            _gameEnded = true;
+            ChunkController.Instance.StopChunkSpawning();
+        }
+    }
 }
