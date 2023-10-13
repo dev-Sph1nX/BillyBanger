@@ -6,7 +6,7 @@ public class TerrainMovement : MonoBehaviour
 {
     void Update()
     {
-        this.transform.Translate(Vector3.left * Time.deltaTime * (ChunkController.Instance.chunkSpeed * GameController.Instance.speedFactor), Space.Self);
+        this.transform.Translate(Vector3.back * Time.deltaTime * (ChunkController.Instance.chunkSpeed * GameController.Instance.speedFactor), Space.Self);
     }
 
 }

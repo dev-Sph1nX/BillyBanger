@@ -16,13 +16,13 @@ public class ChunkController : MonoBehaviour
         }
     }
 
-    public float chunkSpawnX;
-    public float chunkDespawnX;
-    public float chunkScale = 30;
+    [Range(0, 20)]
     public float chunkSpeed = 10;
-    public int chunkNbTargets = 4;
+
+    public int nbStateDifficulties = 4;
 
     public List<ChunkSO> chunksSO;
+
     private Chunk _currentChunk;
     private Chunk _previousChunkSpawn;
     private int _chunkIndex = 0;
@@ -30,9 +30,9 @@ public class ChunkController : MonoBehaviour
     private bool _stopSpawning = false;
     private float quartTemps;
 
-    void Start()
+    void Awake()
     {
-        this.quartTemps = GameController.Instance.globalGameTime / chunkNbTargets;
+        this.quartTemps = GameController.Instance.globalGameTime / nbStateDifficulties;
     }
 
     public void StartChunkSpawning()
@@ -47,16 +47,26 @@ public class ChunkController : MonoBehaviour
 
         _previousChunkSpawn = _currentChunk;
 
-        _currentChunk = GameObject.Instantiate(GameController.Instance.ChunkPrefab);
+        GameObject newgo = GameObject.Instantiate(newChunkSO.chunkVariant);
+        _currentChunk = newgo.GetComponent<Chunk>();
         if (!_previousChunkSpawn) _previousChunkSpawn = _currentChunk; // on first spawn
 
         _currentChunk.chunkSO = newChunkSO;
-        _currentChunk.transform.localPosition = new Vector3(chunkSpawnX - offset, 0, chunkScale / 2);
+        _currentChunk.transform.localPosition = new Vector3(-newChunkSO.width - offset, 0, newChunkSO.length);
 
-        int nbTargets = 1;
-        while (nbTargets < chunkNbTargets && Time.timeSinceLevelLoad > quartTemps * nbTargets)
+        int nbTargets = _currentChunk.targets.Count / nbStateDifficulties;
+        // while (nbTargets < chunkNbTargets && Time.timeSinceLevelLoad > quartTemps * nbTargets)
+        // {
+        //     nbTargets += 2;
+        // }
+        for (int i = 0; i < nbStateDifficulties; i++)
         {
-            nbTargets++;
+            Debug.Log(Time.timeSinceLevelLoad + ">" + quartTemps * i);
+            if (Time.timeSinceLevelLoad >= quartTemps * i)
+            {
+                nbTargets += _currentChunk.targets.Count / nbStateDifficulties;
+                Debug.Log("update nb => " + nbTargets);
+            }
         }
         _currentChunk.Init(nbTargets);
     }
@@ -64,9 +74,10 @@ public class ChunkController : MonoBehaviour
     void Update()
     {
         _totalDistance += Time.deltaTime * chunkSpeed;
-        if (_totalDistance >= chunkScale && !_stopSpawning)
+        if (_totalDistance >= chunksSO[_chunkIndex].length && !_stopSpawning)
         {
-            _totalDistance = _totalDistance - chunkScale; // = offset
+            Debug.Log("Spawn");
+            _totalDistance = _totalDistance - chunksSO[_chunkIndex].length; // = offset
             CreateChunk(chunksSO[_chunkIndex], _totalDistance);
         }
     }

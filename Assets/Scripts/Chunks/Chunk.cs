@@ -10,17 +10,11 @@ public class Chunk : MonoBehaviour
 {
     [Tooltip("Will be set by ChunkController on instantiate.")]
     public ChunkSO chunkSO;
-    public MeshRenderer groundMeshRenderer;
     public List<GameObject> targets;
-
-
-    private float spawnX;
 
     public void Init(int nbTargets)
     {
-        this.groundMeshRenderer.material = this.chunkSO.groundMaterial;
-        this.spawnX = this.transform.localPosition.x;
-
+        Debug.Log(Time.timeSinceLevelLoad + " / " + gameObject.name + " spawn avec " + nbTargets + " cbiles.");
         List<GameObject> selectedTargets = targets.OrderBy(arg => Guid.NewGuid()).Take(nbTargets).ToList();
         foreach (GameObject selected in selectedTargets)
         {
@@ -30,7 +24,7 @@ public class Chunk : MonoBehaviour
 
     void Update()
     {
-        if (this.transform.localPosition.x < ChunkController.Instance.chunkDespawnX)
+        if (this.transform.localPosition.z < -chunkSO.length)
         {
             Destroy(gameObject);
         }
