@@ -17,7 +17,7 @@ public class ChunkController : MonoBehaviour
     }
 
     [Range(0, 20)]
-    public float chunkSpeed = 10;
+    public float chunkSpeed = 0;
 
     public int nbStateDifficulties = 4;
 
@@ -27,9 +27,10 @@ public class ChunkController : MonoBehaviour
     private Chunk _previousChunkSpawn;
     private int _chunkIndex = 0;
     private float _totalDistance = 0;
-    private bool _stopSpawning = false;
     private float quartTemps;
     private float previousSpeed;
+
+    private int _remainingChunks = 9999;
 
     void Awake()
     {
@@ -40,9 +41,10 @@ public class ChunkController : MonoBehaviour
     public void StartChunkSpawning()
     {
         CreateChunk(chunksSO[_chunkIndex]);
+        StartCoroutine(IncreaseSpeed());
     }
 
-    public void CreateChunk(ChunkSO newChunkSO, float offset = 0)
+    public void CreateChunk(ChunkSO newChunkSO, float offset = 0, bool noTarget = false)
     {
         if (_chunkIndex + 1 >= chunksSO.Count) _chunkIndex = 0;
         else _chunkIndex++;
@@ -57,10 +59,6 @@ public class ChunkController : MonoBehaviour
         _currentChunk.transform.localPosition = new Vector3(-newChunkSO.width - offset, 0, newChunkSO.length);
 
         int nbTargets = _currentChunk.targets.Count / nbStateDifficulties;
-        // while (nbTargets < chunkNbTargets && Time.timeSinceLevelLoad > quartTemps * nbTargets)
-        // {
-        //     nbTargets += 2;
-        // }
         for (int i = 0; i < nbStateDifficulties; i++)
         {
             if (Time.timeSinceLevelLoad >= quartTemps * i)
@@ -68,22 +66,26 @@ public class ChunkController : MonoBehaviour
                 nbTargets += _currentChunk.targets.Count / nbStateDifficulties;
             }
         }
+        if (noTarget) nbTargets = 0;
         _currentChunk.Init(nbTargets);
+        _remainingChunks--;
     }
 
     void Update()
     {
         _totalDistance += Time.deltaTime * chunkSpeed;
-        if (_totalDistance >= chunksSO[_chunkIndex].length && !_stopSpawning)
+        if (_totalDistance >= chunksSO[_chunkIndex].length && _remainingChunks > 0)
         {
             _totalDistance = _totalDistance - chunksSO[_chunkIndex].length; // = offset
-            CreateChunk(chunksSO[_chunkIndex], _totalDistance);
+            CreateChunk(chunksSO[_chunkIndex], _totalDistance, _remainingChunks == 1);
         }
     }
 
     public void StopChunkSpawning()
     {
-        _stopSpawning = true;
+        Debug.Log("StopChunkSpawning");
+        _remainingChunks = 1;
+
     }
 
     public void SlowSpeed(float factor)
@@ -95,5 +97,17 @@ public class ChunkController : MonoBehaviour
     public void ResetSpeed()
     {
         chunkSpeed = previousSpeed;
+    }
+
+    private IEnumerator IncreaseSpeed()
+    {
+        while (true)
+        {
+            if (chunkSpeed < 10)
+            {
+                chunkSpeed += 0.4f;
+            }
+            yield return new WaitForSeconds(0.2f);
+        }
     }
 }
