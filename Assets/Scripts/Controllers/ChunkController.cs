@@ -29,9 +29,11 @@ public class ChunkController : MonoBehaviour
     private float _totalDistance = 0;
     private bool _stopSpawning = false;
     private float quartTemps;
+    private float previousSpeed;
 
     void Awake()
     {
+        this.previousSpeed = chunkSpeed;
         this.quartTemps = GameController.Instance.globalGameTime / nbStateDifficulties;
     }
 
@@ -61,11 +63,9 @@ public class ChunkController : MonoBehaviour
         // }
         for (int i = 0; i < nbStateDifficulties; i++)
         {
-            Debug.Log(Time.timeSinceLevelLoad + ">" + quartTemps * i);
             if (Time.timeSinceLevelLoad >= quartTemps * i)
             {
                 nbTargets += _currentChunk.targets.Count / nbStateDifficulties;
-                Debug.Log("update nb => " + nbTargets);
             }
         }
         _currentChunk.Init(nbTargets);
@@ -76,7 +76,6 @@ public class ChunkController : MonoBehaviour
         _totalDistance += Time.deltaTime * chunkSpeed;
         if (_totalDistance >= chunksSO[_chunkIndex].length && !_stopSpawning)
         {
-            Debug.Log("Spawn");
             _totalDistance = _totalDistance - chunksSO[_chunkIndex].length; // = offset
             CreateChunk(chunksSO[_chunkIndex], _totalDistance);
         }
@@ -85,5 +84,16 @@ public class ChunkController : MonoBehaviour
     public void StopChunkSpawning()
     {
         _stopSpawning = true;
+    }
+
+    public void SlowSpeed(float factor)
+    {
+        previousSpeed = chunkSpeed;
+        chunkSpeed = chunkSpeed * factor;
+    }
+
+    public void ResetSpeed()
+    {
+        chunkSpeed = previousSpeed;
     }
 }

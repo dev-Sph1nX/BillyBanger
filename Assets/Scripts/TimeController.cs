@@ -26,9 +26,9 @@ public class TimeController : MonoBehaviour
 
     public void Update()
     {
-        if(_pas < 0)
+        if (_pas < 0)
         {
-            if(stamina <= 0)
+            if (stamina <= 0)
             {
                 toggleBulletTime(false);
             }
@@ -36,11 +36,11 @@ public class TimeController : MonoBehaviour
             {
                 stamina += _pas * Time.deltaTime;
             }
-  
+
         }
         else
         {
-            if(stamina <= 1)
+            if (stamina <= 1)
             {
                 stamina += _pas * Time.deltaTime;
             }
@@ -54,20 +54,19 @@ public class TimeController : MonoBehaviour
 
     public void doSlowMo()
     {
-        Time.timeScale = slowDownFactor;
-        Time.fixedDeltaTime = Time.timeScale * 0.02f;
+        ChunkController.Instance.SlowSpeed(slowDownFactor);
     }
 
     public void endSlowMo()
     {
-        Time.timeScale = 1;
+        ChunkController.Instance.ResetSpeed();
     }
 
     public void toggleBulletTime(bool active)
     {
         if (active)
         {
-            _pas = - pasStamina;
+            _pas = -pasStamina;
             doSlowMo();
         }
         else

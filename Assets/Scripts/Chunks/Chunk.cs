@@ -14,7 +14,6 @@ public class Chunk : MonoBehaviour
 
     public void Init(int nbTargets)
     {
-        Debug.Log(Time.timeSinceLevelLoad + " / " + gameObject.name + " spawn avec " + nbTargets + " cbiles.");
         List<GameObject> selectedTargets = targets.OrderBy(arg => Guid.NewGuid()).Take(nbTargets).ToList();
         foreach (GameObject selected in selectedTargets)
         {

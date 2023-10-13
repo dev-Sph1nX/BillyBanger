@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public float sensibility;
     public Transform orientation;
-    
+
     [Range(0, 90)]
     public int cameraXLimit;
 
@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
         float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensibility;
 
         yRotation += mouseX;
-        yRotation = Mathf.Clamp(yRotation, -cameraXLimit, cameraXLimit);
+        yRotation = Mathf.Clamp(yRotation, -cameraXLimit - 90f, cameraXLimit - 90f);
 
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
