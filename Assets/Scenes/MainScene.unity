@@ -2657,6 +2657,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2668134377327705040, guid: eb03aa54428baa94695f23aff1c3456e,
+        type: 3}
+      propertyPath: gunSound
+      value: 
+      objectReference: {fileID: 1586769376703027781}
     - target: {fileID: 6429265677475472915, guid: eb03aa54428baa94695f23aff1c3456e,
         type: 3}
       propertyPath: m_Name
@@ -2985,7 +2990,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ChunkPrefab: {fileID: 0}
   speedFactor: 1
-  globalGameTime: 10
+  globalGameTime: 60
   endIntervalTime: 30
   railSound: {fileID: 1465114102}
 --- !u!1 &1252847041
@@ -3318,15 +3323,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 337843120832874124, guid: 52fff1c07d16e2c478c9a5b89ced6e96,
+        type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 337843120832874124, guid: 52fff1c07d16e2c478c9a5b89ced6e96,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 75e6246c4a4aa4dec90ba65ba88e8d43, type: 3}
+    - target: {fileID: 337843120832874124, guid: 52fff1c07d16e2c478c9a5b89ced6e96,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4489114939324176625, guid: 52fff1c07d16e2c478c9a5b89ced6e96,
         type: 3}
       propertyPath: m_Name
       value: AudioSources
-      objectReference: {fileID: 0}
-    - target: {fileID: 5103914139609892703, guid: 52fff1c07d16e2c478c9a5b89ced6e96,
-        type: 3}
-      propertyPath: m_Volume
-      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 6149844214306065280, guid: 52fff1c07d16e2c478c9a5b89ced6e96,
         type: 3}
@@ -3385,3 +3400,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52fff1c07d16e2c478c9a5b89ced6e96, type: 3}
+--- !u!82 &1586769376703027781 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 337843120832874124, guid: 52fff1c07d16e2c478c9a5b89ced6e96,
+    type: 3}
+  m_PrefabInstance: {fileID: 1586769376703027780}
+  m_PrefabAsset: {fileID: 0}
