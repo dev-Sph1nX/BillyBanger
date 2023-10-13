@@ -2973,6 +2973,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &860004698 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5884034590993038950, guid: 5e6cb963a7e2420428d8971d20afebd6,
+    type: 3}
+  m_PrefabInstance: {fileID: 4047243769125167320}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &908320010
 GameObject:
   m_ObjectHideFlags: 0
@@ -3108,9 +3114,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ChunkPrefab: {fileID: 0}
   speedFactor: 1
-  globalGameTime: 60
+  globalGameTime: 19.7
   endIntervalTime: 15
   railSound: {fileID: 1465114102}
+  endScreen: {fileID: 860004698}
 --- !u!1 &1252847041
 GameObject:
   m_ObjectHideFlags: 0

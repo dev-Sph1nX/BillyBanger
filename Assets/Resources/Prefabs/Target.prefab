@@ -58,6 +58,7 @@ MonoBehaviour:
   points: 20
   meshRenderer: {fileID: 0}
   hitMaterial: {fileID: 2100000, guid: 7671f850168e3ef48b4d37fdeed0cd85, type: 2}
+  hitSound: {fileID: 0}
 --- !u!65 &1625258039216094267
 BoxCollider:
   m_ObjectHideFlags: 0
