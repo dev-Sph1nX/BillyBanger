@@ -3002,4 +3002,5 @@ MonoBehaviour:
   chunkSpeed: 10
   nbStateDifficulties: 4
   chunksSO:
+  - {fileID: 11400000, guid: 24d72fbc935531c46bfd54a74421310a, type: 2}
   - {fileID: 11400000, guid: b18dee713aee71849b4fabeac6ab9863, type: 2}

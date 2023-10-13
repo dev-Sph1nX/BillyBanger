@@ -229,7 +229,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2535287789802118976}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -2, z: -100}
+  m_LocalPosition: {x: 0, y: -2.001, z: -100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -245,12 +245,12 @@ Terrain:
   m_GameObject: {fileID: 2535287789802118976}
   m_Enabled: 1
   serializedVersion: 6
-  m_TerrainData: {fileID: 15600000, guid: 398d84dbbc2458740939e166a3383496, type: 2}
+  m_TerrainData: {fileID: 15600000, guid: f6d891766fc644e8ba63fdb219f26ca4, type: 2}
   m_TreeDistance: 5000
   m_TreeBillboardDistance: 50
   m_TreeCrossFadeLength: 5
   m_TreeMaximumFullLODCount: 50
-  m_DetailObjectDistance: 250
+  m_DetailObjectDistance: 80
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
@@ -265,11 +265,11 @@ Terrain:
   m_BakeLightProbesForTrees: 1
   m_PreserveTreePrototypeLayers: 0
   m_DeringLightProbesForTrees: 1
-  m_ScaleInLightmap: 0.0256
+  m_ScaleInLightmap: 1
   m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
   m_GroupingID: 0
   m_RenderingLayerMask: 1
-  m_AllowAutoConnect: 1
+  m_AllowAutoConnect: 0
 --- !u!154 &7542755155990031765
 TerrainCollider:
   m_ObjectHideFlags: 0
@@ -279,7 +279,7 @@ TerrainCollider:
   m_GameObject: {fileID: 2535287789802118976}
   m_Material: {fileID: 0}
   m_Enabled: 1
-  m_TerrainData: {fileID: 15600000, guid: 398d84dbbc2458740939e166a3383496, type: 2}
+  m_TerrainData: {fileID: 15600000, guid: 2e01177cf9fb547d2a91f56f621a0b48, type: 2}
   m_EnableTreeColliders: 1
 --- !u!1 &2552147789113679987
 GameObject:
