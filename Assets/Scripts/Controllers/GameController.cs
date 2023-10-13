@@ -25,8 +25,13 @@ public class GameController : MonoBehaviour
     [Tooltip("Temps de jeu (en s)")]
     [Range(0, 60)]
     public float globalGameTime = 60;
+    public float endIntervalTime = 20;
 
     private bool _gameEnded = false;
+
+    public delegate void ScoreEvent(int nbPoints);
+    public event ScoreEvent onScore;
+
     void Start()
     {
         ChunkController.Instance.StartChunkSpawning();
@@ -39,5 +44,15 @@ public class GameController : MonoBehaviour
             _gameEnded = true;
             ChunkController.Instance.StopChunkSpawning();
         }
+        if (Time.timeSinceLevelLoad >= globalGameTime + endIntervalTime)
+        {
+            ChunkController.Instance.chunkSpeed = 0;
+            // end canvas pop()
+        }
+    }
+
+    public void ScorePoint(int nbPoints)
+    {
+        this.onScore?.Invoke(nbPoints);
     }
 }
