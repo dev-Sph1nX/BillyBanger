@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerShooter : MonoBehaviour
 {
     public Transform cameraTransform;
+    public AudioSource gunSound;
     void Awake()
     {
         InputController.instance.onLeftClickClicked += this.Fire;
@@ -17,6 +18,7 @@ public class PlayerShooter : MonoBehaviour
 
     void Fire()
     {
+        gunSound.Play();
         int layerMask = 1 << 8;
         layerMask = ~layerMask;
         RaycastHit hit;

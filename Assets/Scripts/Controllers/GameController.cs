@@ -32,6 +32,8 @@ public class GameController : MonoBehaviour
     public delegate void ScoreEvent(int nbPoints);
     public event ScoreEvent onScore;
 
+    public AudioSource railSound;
+
     void Start()
     {
         ChunkController.Instance.StartChunkSpawning();
@@ -47,6 +49,7 @@ public class GameController : MonoBehaviour
         if (Time.timeSinceLevelLoad >= globalGameTime + endIntervalTime)
         {
             ChunkController.Instance.chunkSpeed = 0;
+            railSound.Stop();
             // end canvas pop()
         }
     }
