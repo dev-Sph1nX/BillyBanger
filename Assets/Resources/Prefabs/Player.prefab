@@ -326,7 +326,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sensibility: 100
   orientation: {fileID: 1512033474882661095}
-  cameraXLimit: 40
+  cameraXLimit: 50
 --- !u!1 &1512033474882661094
 GameObject:
   m_ObjectHideFlags: 0
@@ -540,6 +540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 1512033474599870090}
+  gunSound: {fileID: 0}
 --- !u!1001 &3383274946472288409
 PrefabInstance:
   m_ObjectHideFlags: 0
