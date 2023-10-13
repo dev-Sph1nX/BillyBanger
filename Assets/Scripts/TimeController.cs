@@ -55,11 +55,13 @@ public class TimeController : MonoBehaviour
     public void doSlowMo()
     {
         ChunkController.Instance.SlowSpeed(slowDownFactor);
+        SlowMoVignetteController.Instance.VignetteAppear();
     }
 
     public void endSlowMo()
     {
         ChunkController.Instance.ResetSpeed();
+        SlowMoVignetteController.Instance.VignetteDesappear();
     }
 
     public void toggleBulletTime(bool active)
