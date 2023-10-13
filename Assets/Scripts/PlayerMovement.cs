@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
         yRotation = Mathf.Clamp(yRotation, -cameraXLimit - 90f, cameraXLimit - 90f);
 
         xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+        xRotation = Mathf.Clamp(xRotation, -15, 15);
 
         transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
     }
