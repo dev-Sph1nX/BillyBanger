@@ -5,12 +5,13 @@ using UnityEngine;
 public class TimeController : MonoBehaviour
 {
     public float slowDownFactor = 0.05f;
-    public float bulletTimeLength = 2f;
-
+    public float stamina = 1f;
+    public float pasStamina = 0.1f;
 
     private static TimeController _instance;
     private float? startBulletTime;
     private float? endBulletTime;
+    private float _pas;
 
     public static TimeController instance
     {
@@ -25,16 +26,28 @@ public class TimeController : MonoBehaviour
 
     public void Update()
     {
-        //Pas de end bullet time donc pas de descente
-        if(startBulletTime != null && endBulletTime == null)
+        if(_pas < 0)
         {
-            this.doSlowMo();
+            if(stamina <= 0)
+            {
+                toggleBulletTime(false);
+            }
+            else
+            {
+                stamina += _pas * Time.deltaTime;
+            }
+  
         }
-
-        //end bullet set donc MouseUp = debut de la descente
-        if(startBulletTime != null && endBulletTime >= startBulletTime)
+        else
         {
-            this.endSlowMo();
+            if(stamina <= 1)
+            {
+                stamina += _pas * Time.deltaTime;
+            }
+            else
+            {
+                stamina = 1;
+            }
         }
     }
 
@@ -47,29 +60,26 @@ public class TimeController : MonoBehaviour
 
     public void endSlowMo()
     {
-        Debug.Log("End slow mo");
-        Time.timeScale += (1f / bulletTimeLength) * Time.unscaledDeltaTime;
-        Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
+        Time.timeScale = 1;
     }
 
     public void toggleBulletTime(bool active)
     {
         if (active)
         {
-            this.startBulletTime = Time.time;
-            this.endBulletTime = null;
-            TimeController.instance.doSlowMo();
+            _pas = - pasStamina;
+            doSlowMo();
         }
         else
         {
-            this.startBulletTime = Time.time;
-            this.endBulletTime = Time.time + bulletTimeLength;
+            _pas = pasStamina;
+            endSlowMo();
         }
-
     }
 
     public void Awake()
     {
+        _pas = -stamina;
         InputController.instance.onRightClickClicked += this.toggleBulletTime;
         InputController.instance.onRightClickUnclicked += this.toggleBulletTime;
     }
