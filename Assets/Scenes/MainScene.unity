@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2720,7 +2720,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slowDownFactor: 0.3
   stamina: 1
-  pasStamina: 0.1
+  pasStamina: 0.7
 --- !u!1001 &609406559
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3114,7 +3114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ChunkPrefab: {fileID: 0}
   speedFactor: 1
-  globalGameTime: 19.7
+  globalGameTime: 60
   endIntervalTime: 15
   railSound: {fileID: 1465114102}
   endScreen: {fileID: 860004698}

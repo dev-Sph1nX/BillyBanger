@@ -103,7 +103,7 @@ public class ChunkController : MonoBehaviour
     {
         while (true)
         {
-            if (chunkSpeed < 10)
+            if (chunkSpeed < 20)
             {
                 chunkSpeed += 0.4f;
             }
