@@ -21,20 +21,25 @@ public class InputController : MonoBehaviour
     public event RightClickEvent onRightClickClicked;
 
     public event RightClickEvent onRightClickUnclicked;
-    
+
+    public delegate void LeftClickEvent();
+    public event LeftClickEvent onLeftClickClicked;
+
     private void Update()
     {
         if (Input.GetMouseButtonDown(1))
         {
-            if (this.onRightClickClicked != null)
-                this.onRightClickClicked.Invoke(true);
+            this.onRightClickClicked?.Invoke(true);
         }
 
         if (Input.GetMouseButtonUp(1))
         {
-            if (this.onRightClickUnclicked != null)
-                this.onRightClickUnclicked.Invoke(false);
+            this.onRightClickUnclicked?.Invoke(false);
         }
+
+        if (Input.GetMouseButtonDown(0))
+            this.onLeftClickClicked?.Invoke();
+
     }
 
 }
