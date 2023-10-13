@@ -9,7 +9,8 @@ public class Target : MonoBehaviour
     public Material hitMaterial;
     public void Hit()
     {
-        meshRenderer.material = hitMaterial;
+        //meshRenderer.material = hitMaterial;
+        Destroy(this.gameObject);
         GameController.Instance.ScorePoint(points);
     }
 }
