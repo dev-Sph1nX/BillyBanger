@@ -7,8 +7,10 @@ public class Target : MonoBehaviour
     public int points = 20;
     public MeshRenderer meshRenderer;
     public Material hitMaterial;
+    public AudioSource hitSound;
     public void Hit()
     {
+        hitSound.Play();
         //meshRenderer.material = hitMaterial;
         Destroy(this.gameObject);
         GameController.Instance.ScorePoint(points);

@@ -34,6 +34,8 @@ public class GameController : MonoBehaviour
 
     public AudioSource railSound;
 
+    public GameObject endScreen;
+
     void Start()
     {
         ChunkController.Instance.StartChunkSpawning();
@@ -50,7 +52,9 @@ public class GameController : MonoBehaviour
         {
             ChunkController.Instance.chunkSpeed = 0;
             railSound.Stop();
-            // end canvas pop()
+            endScreen.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 
