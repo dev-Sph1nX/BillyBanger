@@ -17,6 +17,7 @@ public class PlayerShooter : MonoBehaviour
 
     void Fire()
     {
+
         int layerMask = 1 << 8;
         layerMask = ~layerMask;
         RaycastHit hit;
