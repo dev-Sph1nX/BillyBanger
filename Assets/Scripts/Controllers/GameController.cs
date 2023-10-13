@@ -27,6 +27,10 @@ public class GameController : MonoBehaviour
     public float globalGameTime = 60;
 
     private bool _gameEnded = false;
+
+    public delegate void ScoreEvent(int nbPoints);
+    public event ScoreEvent onScore;
+
     void Start()
     {
         ChunkController.Instance.StartChunkSpawning();
@@ -39,5 +43,10 @@ public class GameController : MonoBehaviour
             _gameEnded = true;
             ChunkController.Instance.StopChunkSpawning();
         }
+    }
+
+    public void ScorePoint(int nbPoints)
+    {
+        this.onScore?.Invoke(nbPoints);
     }
 }

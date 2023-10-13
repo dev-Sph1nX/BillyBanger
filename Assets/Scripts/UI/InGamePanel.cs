@@ -1,18 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class InGamePanel : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public TextMeshProUGUI pointsText;
+
+    private float count = 0;
+
+    void Awake()
     {
+        GameController.Instance.onScore += this.UpdatePanel;
 
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UpdatePanel(int nbPoints)
     {
-
+        count += nbPoints;
+        pointsText.text = count.ToString() + " pts";
     }
 }
